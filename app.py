@@ -5,19 +5,18 @@ import time
 app = Flask(__name__)
 CORS(app)
 
-# 🔥 VERİ + ZAMAN
 bus_data = {}
 last_update = {}
 
 # -------------------------
-# 🔹 ANA SAYFA
+# ANA SAYFA
 # -------------------------
 @app.route("/")
 def home():
     return "API çalışıyor!"
 
 # -------------------------
-# 🔹 VERİ GÖNDERME
+# VERİ GÖNDERME
 # -------------------------
 @app.route("/update/<int:bus_id>", methods=["POST"])
 def update_bus(bus_id):
@@ -34,7 +33,7 @@ def update_bus(bus_id):
     })
 
 # -------------------------
-# 🔹 VERİ ÇEKME (10 SN TIMEOUT)
+# VERİ ÇEKME
 # -------------------------
 @app.route("/bus/<int:bus_id>")
 def get_bus(bus_id):
@@ -43,7 +42,7 @@ def get_bus(bus_id):
     if bus_id not in last_update:
         return jsonify({"count": 0})
 
-    # 🔥 10 saniye kuralı
+    # 10sn sonra sıfırlama
     if time.time() - last_update[bus_id] > 10:
         return jsonify({"count": 0})
 
@@ -52,7 +51,7 @@ def get_bus(bus_id):
     })
 
 # -------------------------
-# 🔹 DEBUG (opsiyonel)
+# DEBUG (opsiyonel)
 # -------------------------
 @app.route("/debug")
 def debug():
