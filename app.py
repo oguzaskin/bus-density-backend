@@ -14,7 +14,7 @@ last_update = {}
 # -------------------------
 @app.route("/")
 def home():
-    return "API çalışıyor"
+    return "API çalışıyor!"
 
 # -------------------------
 # 🔹 VERİ GÖNDERME
