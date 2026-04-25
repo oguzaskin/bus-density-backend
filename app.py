@@ -24,7 +24,7 @@ def update_bus(bus_id):
     count = data.get("count", 0)
 
     bus_data[bus_id] = count
-    last_update[bus_id] = time.time()  # 🔥 kritik
+    last_update[bus_id] = time.time()  # kritik
 
     return jsonify({
         "status": "ok",
@@ -38,7 +38,7 @@ def update_bus(bus_id):
 @app.route("/bus/<int:bus_id>")
 def get_bus(bus_id):
 
-    # 🔥 hiç veri yoksa
+    # veri yoksa
     if bus_id not in last_update:
         return jsonify({"count": 0})
 
